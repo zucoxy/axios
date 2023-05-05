@@ -67,3 +67,4 @@ const http: Http = {
 export default http;
 
 export { instance };
+export * from './useCancelToken';

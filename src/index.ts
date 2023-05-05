@@ -1,8 +1,8 @@
 import axios from 'axios';
-import axiosAdapter from "./adapter";
-import request from "./interceptor/request";
-import response from "./interceptor/response";
-import type { Http, ResType } from "./types";
+import axiosAdapter from './adapter';
+import request from './interceptor/request';
+import response from './interceptor/response';
+import type { Http, ResType } from './types';
 
 const instance = axios.create({
   timeout: 15000,
@@ -25,11 +25,11 @@ const http: Http = {
     return new Promise((resolve, reject) => {
       instance
         .get<ResType>(url, config)
-        .then((res) => {
+        .then(res => {
           const { code, data, msg, total } = res.data || {};
           resolve({ code, data, msg, total, err: null });
         })
-        .catch((err) => {
+        .catch(err => {
           reject({ err: err.toString() });
         });
     });
@@ -38,11 +38,11 @@ const http: Http = {
     return new Promise((resolve, reject) => {
       instance
         .post<ResType>(url, config?.payload, config)
-        .then((res) => {
+        .then(res => {
           const { code, data, msg, total } = res.data || {};
           resolve({ code, data, msg, total, err: null });
         })
-        .catch((err) => {
+        .catch(err => {
           reject({ err: err.toString() });
         });
     });
@@ -54,11 +54,11 @@ const http: Http = {
           headers: { 'Content-Type': 'multipart/form-data' },
           ...config,
         })
-        .then((res) => {
+        .then(res => {
           const { code, data, msg, total } = res.data || {};
           resolve({ code, data, msg, total, err: null });
         })
-        .catch((err) => {
+        .catch(err => {
           reject({ err: err.toString() });
         });
     });

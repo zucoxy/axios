@@ -1,7 +1,6 @@
 import type { AxiosAdapter, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { isNetworkError } from "../utils";
-import type { RetryAdapterOption } from "../types";
-
+import { isNetworkError } from '../utils';
+import type { RetryAdapterOption } from '../types';
 
 function retryAdapter(adapter: AxiosAdapter, retryAdapterOption?: RetryAdapterOption) {
   let times = retryAdapterOption?.times === undefined ? 1 : retryAdapterOption.times;
@@ -24,7 +23,7 @@ function retryAdapter(adapter: AxiosAdapter, retryAdapterOption?: RetryAdapterOp
             return await Promise.reject(err);
           }
           // 延迟执行
-          await new Promise((resolve) => {
+          await new Promise(resolve => {
             setTimeout(() => {
               resolve(null);
             }, interval);

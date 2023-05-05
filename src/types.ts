@@ -1,5 +1,4 @@
-import type { AxiosError } from "axios";
-import { AxiosPromise, AxiosRequestConfig } from "axios";
+import type { AxiosError, AxiosPromise, AxiosRequestConfig } from 'axios';
 
 export interface ResType<T = any> {
   code: number;
@@ -30,7 +29,6 @@ export interface Http {
   upload<T>(url: string, config: AxiosRequestConfig): Promise<ResType<T>>;
 }
 
-
 /**
  * 扩展 axios config 类型声明
  */
@@ -43,4 +41,3 @@ declare module 'axios' {
     isCancel?: boolean | 'recover'; // 是否自动取消重复的请求。 recover 表示每次取消上一次的请求
   }
 }
-

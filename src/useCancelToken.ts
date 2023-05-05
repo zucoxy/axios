@@ -1,9 +1,9 @@
 import type { AxiosRequestConfig, CancelToken } from 'axios';
-import { buildSortedURL } from "./utils";
-import axios from "axios";
+import axios from 'axios';
+import { buildSortedURL } from './utils';
 
 const cancelApiMap = new Map(); // 正在请求的 接口 map
-let key: string = ''; // 最近一条正在请求的接口 key
+let key = ''; // 最近一条正在请求的接口 key
 
 export const useCancelTokenStore = () => {
   let cancelToken: CancelToken; // axios.config.cancelToken
@@ -19,7 +19,7 @@ export const useCancelTokenStore = () => {
       cancelFlag = true;
     }
     cancelFlag && isCancel === 'recover' && cancel(index);
-    cancelToken = new axios.CancelToken((c) => {
+    cancelToken = new axios.CancelToken(c => {
       cancelApiMap.set(index, c);
     });
     key = index;

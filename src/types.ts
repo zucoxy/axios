@@ -29,15 +29,17 @@ export interface Http {
   upload<T>(url: string, config: AxiosRequestConfig): Promise<ResType<T>>;
 }
 
+export interface UAxiosRequestConfig {
+  npLoading?: boolean; // 请求时是否加载进度条
+  retry?: boolean | { times?: number; delay?: number };
+  useCache?: boolean;
+  payload?: unknown;
+  isCancel?: boolean | 'recover'; // 是否自动取消重复的请求。 recover 表示每次取消上一次的请求
+}
+
 /**
  * 扩展 axios config 类型声明
  */
 declare module 'axios' {
-  interface AxiosRequestConfig {
-    npLoading?: boolean; // 请求时是否加载进度条
-    retry?: boolean | { times?: number; delay?: number };
-    useCache?: boolean;
-    payload?: unknown;
-    isCancel?: boolean | 'recover'; // 是否自动取消重复的请求。 recover 表示每次取消上一次的请求
-  }
+  interface AxiosRequestConfig extends UAxiosRequestConfig {}
 }

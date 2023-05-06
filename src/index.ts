@@ -68,4 +68,4 @@ export default http;
 
 export { instance };
 export * from './useCancelToken';
-export type { UAxiosRequestConfig, ResType, RetryAdapterOption, Http } from './types'
+export * from './types'

@@ -3,6 +3,7 @@ import axiosAdapter from './adapter';
 import request from './interceptor/request';
 import response from './interceptor/response';
 import type { Http, ResType } from './types';
+import NProgress from 'nprogress';
 
 const instance = axios.create({
   timeout: 15000,
@@ -26,8 +27,8 @@ const http: Http = {
       instance
         .get<ResType>(url, config)
         .then(res => {
-          const { code, data, msg, total } = res.data || {};
-          resolve({ code, data, msg, total, err: null });
+          const data = res.data || {};
+          resolve({ ...data, err: null });
         })
         .catch(err => {
           reject({ err: err.toString() });
@@ -39,8 +40,8 @@ const http: Http = {
       instance
         .post<ResType>(url, config?.payload, config)
         .then(res => {
-          const { code, data, msg, total } = res.data || {};
-          resolve({ code, data, msg, total, err: null });
+          const data = res.data || {};
+          resolve({ ...data, err: null });
         })
         .catch(err => {
           reject({ err: err.toString() });
@@ -55,8 +56,8 @@ const http: Http = {
           ...config,
         })
         .then(res => {
-          const { code, data, msg, total } = res.data || {};
-          resolve({ code, data, msg, total, err: null });
+          const data = res.data || {};
+          resolve({ ...data, err: null });
         })
         .catch(err => {
           reject({ err: err.toString() });
@@ -66,6 +67,6 @@ const http: Http = {
 };
 export default http;
 
-export { instance };
+export { instance, NProgress };
 export * from './useCancelToken';
 export * from './types'

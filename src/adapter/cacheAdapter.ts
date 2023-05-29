@@ -1,7 +1,7 @@
 import type { AxiosAdapter, AxiosPromise, AxiosRequestConfig, AxiosResponse } from 'axios';
-import LRUCache from 'lru-cache';
 import { buildSortedURL } from '../utils';
 import type { CacheAdapterOption, ICacheLike } from '../types';
+import LRUCache from '../lruCache';
 
 function isCacheLike(cache: any): cache is ICacheLike<any> {
   return (

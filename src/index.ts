@@ -68,6 +68,7 @@ export default http;
 
 export { instance };
 export * from './useCancelToken';
-export * from './types'
-export * from './utils'
-export * from './progress'
+export * from './types';
+export * from './utils';
+export * from './progress';
+export * from './lruCache';

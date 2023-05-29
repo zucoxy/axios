@@ -1,5 +1,5 @@
 import type { AxiosRequestConfig } from 'axios';
-import NProgress from 'nprogress';
+import { NProgress } from '../progress';
 import { useCancelTokenStore } from '../useCancelToken';
 
 export default {

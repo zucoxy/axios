@@ -2,7 +2,7 @@ import axios from 'axios';
 import retryAdapter from './retryAdapter';
 import cacheAdapter from './cacheAdapter';
 
-const axiosAdapter = retryAdapter(
+const axiosAdapter = () => retryAdapter(
   cacheAdapter(axios.defaults.adapter!, {
     enabledByDefault: false,
   }),

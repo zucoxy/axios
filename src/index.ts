@@ -4,6 +4,12 @@ import request from './interceptor/request';
 import response from './interceptor/response';
 import type { Http, ResType } from './types';
 
+export * from './useCancelToken';
+export * from './types';
+export * from './utils';
+export * from './progress';
+export * from './lruCache';
+
 const instance = axios.create({
   timeout: 15000,
   npLoading: true,
@@ -11,7 +17,7 @@ const instance = axios.create({
     'Cache-Control': 'no-cache',
     'Content-Type': 'application/json;charset=UTF-8',
   },
-  adapter: axiosAdapter,
+  adapter: axiosAdapter(),
 });
 
 // 请求拦截
@@ -67,8 +73,3 @@ const http: Http = {
 export default http;
 
 export { instance };
-export * from './useCancelToken';
-export * from './types';
-export * from './utils';
-export * from './progress';
-export * from './lruCache';

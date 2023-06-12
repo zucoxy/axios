@@ -3,6 +3,7 @@ import axiosAdapter from './adapter';
 import request from './interceptor/request';
 import response from './interceptor/response';
 import type { Http, ResType } from './types';
+import { useNProgress } from './utils';
 
 const instance = axios.create({
   timeout: 15000,
@@ -71,4 +72,3 @@ export { instance };
 export * from './useCancelToken';
 export * from './types';
 export * from './utils';
-export * from './progress';

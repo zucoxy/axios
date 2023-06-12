@@ -1,4 +1,5 @@
 import type { AxiosError, AxiosPromise, AxiosRequestConfig } from 'axios';
+
 export type { AxiosError, AxiosResponse, AxiosRequestConfig, AxiosPromise } from 'axios';
 
 export interface ResType<T = any> {

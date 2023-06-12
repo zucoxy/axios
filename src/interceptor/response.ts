@@ -1,7 +1,8 @@
 import type { AxiosError, AxiosResponse } from 'axios';
-import { NProgress } from '../progress';
-import { isNetworkError } from '../utils';
+import { isNetworkError, useNProgress } from '../utils';
 import { useCancelTokenStore } from '../useCancelToken';
+
+const NProgress = useNProgress();
 
 export default {
   onFulfilled: (response: AxiosResponse): AxiosResponse => {

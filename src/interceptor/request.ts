@@ -1,6 +1,8 @@
 import type { AxiosRequestConfig } from 'axios';
-import { NProgress } from '../progress';
 import { useCancelTokenStore } from '../useCancelToken';
+import { useNProgress } from '../utils';
+
+const NProgress = useNProgress();
 
 export default {
   onFulfilled: (config: AxiosRequestConfig): AxiosRequestConfig => {

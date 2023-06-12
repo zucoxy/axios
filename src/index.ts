@@ -4,12 +4,6 @@ import request from './interceptor/request';
 import response from './interceptor/response';
 import type { Http, ResType } from './types';
 
-export * from './useCancelToken';
-export * from './types';
-export * from './utils';
-export * from './progress';
-export * from './lruCache';
-
 const instance = axios.create({
   timeout: 15000,
   npLoading: true,
@@ -73,3 +67,8 @@ const http: Http = {
 export default http;
 
 export { instance };
+
+export * from './useCancelToken';
+export * from './types';
+export * from './utils';
+export * from './progress';

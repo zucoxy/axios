@@ -1,7 +1,7 @@
 import type { AxiosAdapter, AxiosPromise, AxiosRequestConfig, AxiosResponse } from 'axios';
+import LRUCache from 'lru-cache';
 import { buildSortedURL } from '../utils';
 import type { CacheAdapterOption, ICacheLike } from '../types';
-import LRUCache from '../lruCache';
 
 function isCacheLike(cache: any): cache is ICacheLike<any> {
   return (
@@ -13,7 +13,7 @@ function isCacheLike(cache: any): cache is ICacheLike<any> {
 
 const FIVE_MINUTE = 1000 * 60 * 5;
 
-const cacheAdapter = (adapter: AxiosAdapter, cacheAdapterOption?: CacheAdapterOption): AxiosAdapter => {
+function cacheAdapter(adapter: AxiosAdapter, cacheAdapterOption?: CacheAdapterOption): AxiosAdapter {
   const enabledByDefault = cacheAdapterOption?.enabledByDefault;
   const defaultCache = cacheAdapterOption?.defaultCache || new LRUCache({ ttl: FIVE_MINUTE, max: 100 });
   return (config: AxiosRequestConfig): Promise<AxiosResponse> => {
@@ -42,6 +42,6 @@ const cacheAdapter = (adapter: AxiosAdapter, cacheAdapterOption?: CacheAdapterOp
     }
     return adapter(config);
   };
-};
+}
 
 export default cacheAdapter;

@@ -42,12 +42,10 @@
   "homepage": "https://github.com/zucoxy/axios#readme",
   "dependencies": {
     "axios": "^0.25.0",
-    "lru-cache": "^7.14.1",
-    "nprogress": "0.2.0"
+    "lru-cache": "^7.14.1"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
-    "@types/nprogress": "0.2.0",
     "@unyu/eslint-config": "^0.1.14",
     "bumpp": "^8.2.1",
     "eslint": "^8.28.0",

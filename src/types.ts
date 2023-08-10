@@ -32,7 +32,6 @@ export interface Http {
 }
 
 export interface UAxiosRequestConfig {
-  npLoading?: boolean; // 请求时是否加载进度条
   retry?: boolean | { times?: number; delay?: number };
   useCache?: boolean;
   payload?: unknown;

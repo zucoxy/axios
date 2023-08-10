@@ -1,5 +1,5 @@
 // @ts-ignore
-import buildURL from 'axios/lib/helpers/buildURL';
+import buildURL from 'axios/lib/helpers/buildURL.js';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 

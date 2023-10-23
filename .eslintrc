@@ -4,6 +4,7 @@
   "plugins": ["prettier", "@typescript-eslint"],
   "rules": {
     "no-void": "off",
+    "no-throw-literal": "off",
     "@typescript-eslint/member-delimiter-style": "off"
   }
 }

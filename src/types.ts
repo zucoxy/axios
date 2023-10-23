@@ -3,16 +3,24 @@ import type { AxiosError, AxiosRequestConfig } from 'axios';
 export type { AxiosError, AxiosResponse, AxiosRequestConfig, AxiosPromise } from 'axios';
 
 export interface ResType<T = any> {
+  // 错误状态码
   code: number;
+  // 返回值
   data: T;
+  // 返回信息
   msg: string;
+  // 错误数据
   err?: string | null | AxiosError;
+  // 接口异常时的请求地址
   url?: string;
+  // 列表类接口统计数
   total?: number;
 }
 
 export interface RetryAdapterOption {
+  // 重试的次数
   times?: number;
+  // 重试时的延迟
   delay?: number;
 }
 
@@ -34,9 +42,13 @@ export interface Http {
  */
 declare module 'axios' {
   interface AxiosRequestConfig {
+    // 配置接口超时是否需要自动重新发起请求
     retry?: boolean | { times?: number; delay?: number };
+    // 配置接口是否使用缓存。 expire：缓存存储时长（ms） max: 最大缓存接口数
     useCache?: boolean | { expire?: number; max?: number };
+    // data
     payload?: any;
-    isCancel?: boolean | 'recover'; // 是否自动取消重复的请求。 recover 表示每次取消上一次的请求
+    // 是否自动取消重复的请求。 recover 表示每次取消上一次的请求
+    isCancel?: boolean | 'recover';
   }
 }

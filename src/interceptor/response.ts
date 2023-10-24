@@ -4,26 +4,9 @@ import { useCancelTokenStore } from '../useCancelToken';
 
 export default {
   onFulfilled: (response: AxiosResponse): AxiosResponse => {
-    console.log('123');
     // 每次请求完成，删除当前响应接口的取消请求令牌
     const { deleteResponseApi } = useCancelTokenStore();
     deleteResponseApi();
-    // 统一处理错误信息
-    if ((response as unknown as AxiosError)?.isAxiosError) {
-      const axiosErr = response as unknown as AxiosError;
-      throw {
-        code: axiosErr.response?.status,
-        url: axiosErr.config?.url,
-        err: axiosErr,
-        msg: axiosErr.response?.statusText,
-      } as unknown as AxiosError;
-    }
-    if ((response as any)?.__CANCEL__) {
-      throw {
-        msg: '取消了请求',
-        err: response,
-      } as unknown as AxiosError;
-    }
     return response;
   },
   onRejected: (err: AxiosError) => {
@@ -31,6 +14,22 @@ export default {
     const cancelTokenStore = useCancelTokenStore();
     cancelTokenStore.useCancelToken(err.config);
     !err.message && cancelTokenStore.deleteResponseApi();
+    // 统一处理错误信息
+    if ((err as unknown as AxiosError)?.isAxiosError) {
+      const axiosErr = err as unknown as AxiosError;
+      throw {
+        code: axiosErr.response?.status,
+        url: axiosErr.config?.url,
+        err: axiosErr,
+        msg: axiosErr.response?.statusText,
+      } as unknown as AxiosError;
+    }
+    if ((err as any)?.__CANCEL__) {
+      throw {
+        msg: '取消了请求',
+        err,
+      } as unknown as AxiosError;
+    }
     // 请求超时
     if (isNetworkError(err) && err.request?.status === 0) {
       console.error('网络超时，请重试！');

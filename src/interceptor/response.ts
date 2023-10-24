@@ -4,6 +4,7 @@ import { useCancelTokenStore } from '../useCancelToken';
 
 export default {
   onFulfilled: (response: AxiosResponse): AxiosResponse => {
+    console.log('123');
     // 每次请求完成，删除当前响应接口的取消请求令牌
     const { deleteResponseApi } = useCancelTokenStore();
     deleteResponseApi();

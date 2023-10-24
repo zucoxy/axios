@@ -22,39 +22,39 @@ instance.interceptors.response.use(response.onFulfilled, response.onRejected);
 
 const http: Http = {
   get(url, config) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       instance.get(url, config).then(
         res => resolve(res?.data || {}),
-        e => resolve(e)
+        e => reject(e)
       );
     });
   },
   post(url, config) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       instance.post<ResType>(url, config?.payload, config).then(
         res => resolve(res?.data || {}),
-        e => resolve(e)
+        e => reject(e)
       );
     });
   },
   put(url, config) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       instance.put(url, config == null ? undefined : config.payload, config).then(
         res => resolve(res?.data || {}),
-        e => resolve(e)
+        e => reject(e)
       );
     });
   },
   delete(url, config) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       instance.delete(url, config).then(
         res => resolve(res?.data || {}),
-        e => resolve(e)
+        e => reject(e)
       );
     });
   },
   upload(url, config) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       instance
         .post<ResType>(url, config.payload, {
           headers: { 'Content-Type': 'multipart/form-data' },
@@ -62,7 +62,7 @@ const http: Http = {
         })
         .then(
           res => resolve(res?.data || {}),
-          e => resolve(e)
+          e => reject(e)
         );
     });
   },

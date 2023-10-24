@@ -38,6 +38,6 @@ export default {
         err: err as any,
       } as unknown as AxiosError;
     }
-    return err;
+    throw err;
   },
 };

@@ -15,13 +15,12 @@ export default {
     cancelTokenStore.useCancelToken(err.config);
     !err.message && cancelTokenStore.deleteResponseApi();
     // 统一处理错误信息
-    if ((err as unknown as AxiosError)?.isAxiosError) {
-      const axiosErr = err as unknown as AxiosError;
+    if (err?.isAxiosError) {
       throw {
-        code: axiosErr.response?.status,
-        url: axiosErr.config?.url,
-        err: axiosErr,
-        msg: axiosErr.response?.statusText,
+        code: err.response?.status,
+        url: err.config?.url,
+        err,
+        msg: err.response?.statusText,
       } as unknown as AxiosError;
     }
     if ((err as any)?.__CANCEL__) {

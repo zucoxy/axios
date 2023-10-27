@@ -8,9 +8,9 @@ const instance = axios.create({
   timeout: 15000,
   headers: {
     'Cache-Control': 'no-cache',
-    'Content-Type': 'application/json;charset=UTF-8',
+    'Content-Type': 'application/json;charset=UTF-8'
   },
-  adapter: axiosAdapter(),
+  adapter: axiosAdapter()
 });
 
 // 请求拦截
@@ -24,7 +24,7 @@ const http: Http = {
     return new Promise((resolve, reject) => {
       instance.get(url, config).then(
         res => resolve(res?.data || {}),
-        e => reject(e)
+        e => resolve(e)
       );
     });
   },
@@ -32,7 +32,7 @@ const http: Http = {
     return new Promise((resolve, reject) => {
       instance.post<ResType>(url, config?.payload, config).then(
         res => resolve(res?.data || {}),
-        e => reject(e)
+        e => resolve(e)
       );
     });
   },
@@ -40,7 +40,7 @@ const http: Http = {
     return new Promise((resolve, reject) => {
       instance.put(url, config == null ? undefined : config.payload, config).then(
         res => resolve(res?.data || {}),
-        e => reject(e)
+        e => resolve(e)
       );
     });
   },
@@ -48,7 +48,7 @@ const http: Http = {
     return new Promise((resolve, reject) => {
       instance.delete(url, config).then(
         res => resolve(res?.data || {}),
-        e => reject(e)
+        e => resolve(e)
       );
     });
   },
@@ -57,14 +57,14 @@ const http: Http = {
       instance
         .post<ResType>(url, config.payload, {
           headers: { 'Content-Type': 'multipart/form-data' },
-          ...config,
+          ...config
         })
         .then(
           res => resolve(res?.data || {}),
-          e => reject(e)
+          e => resolve(e)
         );
     });
-  },
+  }
 };
 export default http;
 

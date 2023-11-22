@@ -20,13 +20,14 @@ export default {
         code: err.response?.status,
         url: err.config?.url,
         err,
-        msg: err.response?.statusText,
+        msg: err.response?.statusText
       } as unknown as AxiosError;
     }
     if ((err as any)?.__CANCEL__) {
-      throw {
+      return {
         msg: '取消了请求',
-        err,
+        isCancel: true,
+        err
       } as unknown as AxiosError;
     }
     // 请求超时
@@ -35,9 +36,9 @@ export default {
       throw {
         msg: err.response?.statusText,
         url: err.config?.url,
-        err: err as any,
+        err: err as any
       } as unknown as AxiosError;
     }
     throw err;
-  },
+  }
 };

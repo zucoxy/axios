@@ -20,7 +20,7 @@ export const useCancelTokenStore = () => {
     }
     cancelFlag && isCancel === 'recover' && cancel(index);
     cancelToken = new axios.CancelToken(c => {
-      cancelApiMap.set(index, c);
+      isCancel !== false && cancelApiMap.set(index, c);
     });
     key = index;
     cancelFlag && isCancel && typeof isCancel === 'boolean' && cancel(index);

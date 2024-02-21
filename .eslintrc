@@ -1,7 +1,7 @@
 {
   "root": true,
   "extends": ["@unyu"],
-  "plugins": ["prettier", "@typescript-eslint"],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "no-void": "off",
     "no-throw-literal": "off",

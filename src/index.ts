@@ -36,9 +36,17 @@ const http: Http = {
       );
     });
   },
+  patch(url, config) {
+    return new Promise((resolve, reject) => {
+      instance.patch<ResType>(url.concat(`/${config?.id}`), config?.payload, config).then(
+        res => resolve(res?.data || {}),
+        e => resolve(e)
+      );
+    });
+  },
   put(url, config) {
     return new Promise((resolve, reject) => {
-      instance.put(url, config == null ? undefined : config.payload, config).then(
+      instance.put(url, config?.payload, config).then(
         res => resolve(res?.data || {}),
         e => resolve(e)
       );
@@ -46,7 +54,7 @@ const http: Http = {
   },
   delete(url, config) {
     return new Promise((resolve, reject) => {
-      instance.delete(url, config).then(
+      instance.delete(url.concat(`/${config?.id}`), config).then(
         res => resolve(res?.data || {}),
         e => resolve(e)
       );

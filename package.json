@@ -1,6 +1,6 @@
 {
   "name": "@unyu/axios",
-  "version": "0.0.21",
+  "version": "0.1.0-beta.1",
   "description": "Secondary packaging of axios, including data caching, request retrying, canceling requests and other functions.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/zucoxy/axios#readme",
   "dependencies": {
-    "axios": "^0.25.0",
+    "axios": "^0.28.0",
     "lru-cache": "^7.14.1"
   },
   "devDependencies": {

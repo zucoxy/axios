@@ -33,6 +33,7 @@ export interface Http {
   get: <T = any>(url: string, config?: AxiosRequestConfig) => Promise<ResType<T>>;
   post: <T = any>(url: string, config?: AxiosRequestConfig) => Promise<ResType<T>>;
   put<T>(url: string, config?: AxiosRequestConfig): Promise<ResType<T>>;
+  patch<T>(url: string, config?: AxiosRequestConfig): Promise<ResType<T>>;
   delete<T>(url: string, config?: AxiosRequestConfig): Promise<ResType<T>>;
   upload<T = any>(url: string, config: AxiosRequestConfig): Promise<ResType<T>>;
 }
@@ -48,6 +49,8 @@ declare module 'axios' {
     useCache?: boolean | { expire?: number; max?: number };
     // data
     payload?: any;
+    // restful api id
+    id?: string | number;
     // 是否自动取消重复的请求。 recover 表示每次取消上一次的请求
     isCancel?: boolean | 'recover';
   }

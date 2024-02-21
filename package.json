@@ -1,6 +1,6 @@
 {
   "name": "@unyu/axios",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Secondary packaging of axios, including data caching, request retrying, canceling requests and other functions.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -19,7 +19,6 @@
     "start": "esno src/index.ts",
     "lint": "eslint src --ext .ts,.js",
     "lint:fix": "eslint src --fix",
-    "prettier": "prettier --write .",
     "release": "pnpm run build-fast && bumpp --commit --push --tag && npm publish"
   },
   "repository": {
@@ -49,10 +48,7 @@
     "@unyu/eslint-config": "^0.1.14",
     "bumpp": "^8.2.1",
     "eslint": "^8.28.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
     "esno": "^0.16.3",
-    "prettier": "^2.8.8",
     "tsup": "^6.7.0",
     "typescript": "^4.9.3",
     "vitest": "^0.25.3"

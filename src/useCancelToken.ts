@@ -12,7 +12,7 @@ export const useCancelTokenStore = () => {
   const useCancelToken = (config?: AxiosRequestConfig) => {
     if (!config) return { cancelToken };
     const { url, params, paramsSerializer, isCancel } = config || {};
-    const index = buildSortedURL(url, params, paramsSerializer);
+    const index = buildSortedURL(url!, params, paramsSerializer);
     // 自动跳过和正在请求队列中重复的请求
     let cancelFlag = false;
     if (cancelApiMap.has(index)) {

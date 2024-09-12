@@ -15,12 +15,12 @@ function cacheAdapter(adapter: AxiosAdapter): AxiosAdapter {
   // 保存自定义的缓存对象
   const configCache: Record<string, ICacheLike<any>> = {};
   return (config: AxiosRequestConfig): Promise<AxiosResponse> => {
-    const { url, method, params, data, paramsSerializer, useCache } = config;
+    const { url, method, params, data, payload, paramsSerializer, useCache } = config;
     const expire = typeof useCache === 'object' && useCache.expire ? useCache.expire : FIVE_MINUTE;
     const max = typeof useCache === 'object' && useCache.max ? useCache.max : 100;
 
     if ((method === 'get' || method === 'post') && useCache) {
-      const index = buildSortedURL(url, params || data, paramsSerializer);
+      const index = buildSortedURL(url!, payload || params || data, paramsSerializer);
       if (!configCache[index]) {
         configCache[index] = new LRUCache({ ttl: expire, max });
       }

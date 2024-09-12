@@ -1,8 +1,8 @@
 // @ts-ignore
 import buildURL from 'axios/lib/helpers/buildURL.js';
 
-export function buildSortedURL(...args: any[]) {
-  const builtURL = buildURL(...args);
+export function buildSortedURL(url: string, params?: any, options?: any) {
+  const builtURL = buildURL(url, params, options);
 
   const [urlPath, queryString] = builtURL.split('?');
 

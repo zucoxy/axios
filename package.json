@@ -1,6 +1,6 @@
 {
   "name": "@unyu/axios",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Secondary packaging of axios, including data caching, request retrying, canceling requests and other functions.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
-    "@unyu/eslint-config": "^0.1.14",
+    "@unyu/eslint-config": "^0.2.0",
     "bumpp": "^8.2.1",
     "eslint": "^8.28.0",
     "esno": "^0.16.3",

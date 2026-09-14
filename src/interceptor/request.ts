@@ -1,8 +1,8 @@
-import type { AxiosError, AxiosRequestConfig } from 'axios';
+import type { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { useCancelTokenStore } from '../useCancelToken';
 
 export default {
-  onFulfilled: (config: AxiosRequestConfig): AxiosRequestConfig => {
+  onFulfilled: (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
     // 处理取消请求
     const cancelTokenStore = useCancelTokenStore();
     const { cancelToken } = cancelTokenStore.useCancelToken(config);

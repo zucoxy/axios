@@ -5,21 +5,32 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "exports": {
-    "require": "./dist/index.js",
-    "import": "./dist/index.mjs"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "scripts": {
-    "dev": "tsup src/index.ts",
-    "build-fast": "tsup src/index.ts --format cjs,esm",
-    "build": "pnpm run build-fast -- --dts-resolve",
+    "dev": "tsup src/index.ts --watch --format cjs,esm --dts",
+    "build": "tsup src/index.ts --format cjs,esm --dts --dts-resolve",
     "start": "esno src/index.ts",
     "lint": "eslint src --ext .ts,.js",
     "lint:fix": "eslint src --fix",
-    "release": "pnpm run build-fast && bumpp --commit --push --tag && npm publish"
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "check": "pnpm run lint && pnpm run test",
+    "prepare": "pnpm run build",
+    "prepublishOnly": "pnpm run build",
+    "release": "pnpm run build && bumpp --commit --push --tag && pnpm publish --access public"
   },
   "repository": {
     "type": "git",
@@ -28,19 +39,27 @@
   "keywords": [
     "axios",
     "javascript",
-    "typescript"
+    "typescript",
+    "http",
+    "http-client",
+    "caching",
+    "retry",
+    "cancel"
   ],
   "author": "@unyu <1078119795@qq.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zucoxy/axios/issues"
   },
+  "homepage": "https://github.com/zucoxy/axios#readme",
+  "engines": {
+    "node": ">=16"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/zucoxy/axios#readme",
   "dependencies": {
-    "axios": "^0.28.0",
+    "axios": "^1.0.0",
     "lru-cache": "^7.14.1"
   },
   "devDependencies": {

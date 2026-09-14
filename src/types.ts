@@ -45,8 +45,8 @@ declare module 'axios' {
   interface AxiosRequestConfig {
     // 配置接口超时是否需要自动重新发起请求
     retry?: boolean | { times?: number; delay?: number };
-    // 配置接口是否使用缓存。 expire：缓存存储时长（ms） max: 最大缓存接口数
-    useCache?: boolean | { expire?: number; max?: number };
+    // 配置接口是否使用缓存。 expire：缓存存储时长（ms） max: 最大缓存接口数 也支持传入自定义缓存实现
+    useCache?: boolean | { expire?: number; max?: number } | ICacheLike<any>;
     // data
     payload?: any;
     // restful api id

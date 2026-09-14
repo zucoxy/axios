@@ -11,6 +11,6 @@ export default {
     return config;
   },
   onRejected: (err: AxiosError) => {
-    return err;
+    return Promise.reject(err);
   },
 };

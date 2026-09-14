@@ -1,18 +1,18 @@
-import type { AxiosAdapter, AxiosRequestConfig, AxiosResponse } from 'axios';
+import type { AxiosAdapter, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { isNetworkError } from '../utils';
 import type { RetryAdapterOption } from '../types';
 
 function retryAdapter(adapter: AxiosAdapter, retryAdapterOption?: RetryAdapterOption) {
-  let times = retryAdapterOption?.times === undefined ? 1 : retryAdapterOption.times;
-  let interval = retryAdapterOption?.delay === undefined ? 500 : retryAdapterOption.delay;
-  return (config: AxiosRequestConfig): Promise<AxiosResponse> => {
+  const defaultTimes = retryAdapterOption?.times === undefined ? 1 : retryAdapterOption.times;
+  const defaultInterval = retryAdapterOption?.delay === undefined ? 500 : retryAdapterOption.delay;
+  return (config: InternalAxiosRequestConfig): Promise<AxiosResponse> => {
     const { retry } = config;
     if (retry) {
       let retryCount = 0;
-      if (typeof retry === 'object') {
-        times = Number(retry.times) || times;
-        interval = Number(retry.delay) || interval;
-      }
+      const retryOption: RetryAdapterOption = typeof retry === 'object' ? retry : {};
+      // 重试次数和延迟按请求计算，避免请求之间互相污染
+      const times = Number(retryOption.times) || defaultTimes;
+      const interval = Number(retryOption.delay) || defaultInterval;
       const request = async (): Promise<AxiosResponse> => {
         try {
           return await adapter(config);

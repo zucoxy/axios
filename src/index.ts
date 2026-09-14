@@ -21,54 +21,57 @@ instance.interceptors.response.use(response.onFulfilled, response.onRejected);
 
 const http: Http = {
   get(url, config) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       instance.get(url, config).then(
-        res => resolve(res?.data || {}),
+        res => resolve(res?.data ?? {}),
         e => resolve(e)
       );
     });
   },
   post(url, config) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       instance.post<ResType>(url, config?.payload, config).then(
-        res => resolve(res?.data || {}),
+        res => resolve(res?.data ?? {}),
         e => resolve(e)
       );
     });
   },
   patch(url, config) {
-    return new Promise((resolve, reject) => {
-      instance.patch<ResType>(url.concat(`/${config?.id}`), config?.payload, config).then(
-        res => resolve(res?.data || {}),
+    return new Promise(resolve => {
+      const { id } = config || {};
+      instance.patch<ResType>(id === undefined ? url : `${url}/${id}`, config?.payload, config).then(
+        res => resolve(res?.data ?? {}),
         e => resolve(e)
       );
     });
   },
   put(url, config) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       instance.put(url, config?.payload, config).then(
-        res => resolve(res?.data || {}),
+        res => resolve(res?.data ?? {}),
         e => resolve(e)
       );
     });
   },
   delete(url, config) {
-    return new Promise((resolve, reject) => {
-      instance.delete(url.concat(`/${config?.id}`), config).then(
-        res => resolve(res?.data || {}),
+    return new Promise(resolve => {
+      const { id } = config || {};
+      instance.delete(id === undefined ? url : `${url}/${id}`, config).then(
+        res => resolve(res?.data ?? {}),
         e => resolve(e)
       );
     });
   },
   upload(url, config) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
+      const { headers, ...rest } = config;
       instance
         .post<ResType>(url, config.payload, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-          ...config
+          ...rest,
+          headers: { 'Content-Type': 'multipart/form-data', ...headers }
         })
         .then(
-          res => resolve(res?.data || {}),
+          res => resolve(res?.data ?? {}),
           e => resolve(e)
         );
     });

@@ -59,12 +59,15 @@
     "access": "public"
   },
   "dependencies": {
-    "axios": "^1.0.0",
     "lru-cache": "^7.14.1"
+  },
+  "peerDependencies": {
+    "axios": "^1.18.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
     "@unyu/eslint-config": "^0.2.0",
+    "axios": "^1.18.0",
     "bumpp": "^8.2.1",
     "eslint": "^8.28.0",
     "esno": "^0.16.3",

@@ -3,7 +3,7 @@ import retryAdapter from './retryAdapter';
 import cacheAdapter from './cacheAdapter';
 
 const axiosAdapter = () =>
-  retryAdapter(cacheAdapter(axios.defaults.adapter!), {
+  retryAdapter(cacheAdapter(axios.getAdapter(axios.defaults.adapter)), {
     times: 1,
     delay: 500,
   });
